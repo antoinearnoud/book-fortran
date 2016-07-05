@@ -32,4 +32,15 @@ program myprogram
   z = functionInModule(w,w)
 end program
 ```
-  
+Note the ```use mymodule``` at the begining of the program before the ```implicit none```. Because of this line, all the variables and functions/subroutines declared in the module can be used in the program.
+
+One can also use ```use mymodule, only: variable/function/subroutine``` to make only part of the variables or functions available. For example
+```
+program myprogram
+  use mymodule, only: functionInModule
+  implicit none
+  real :: w,z
+  z = functionInModule
+end program
+```
+Why would you want to do that?
