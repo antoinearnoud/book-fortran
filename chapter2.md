@@ -135,7 +135,7 @@ In both function and subroutine, one can specify is the arguments of the functio
 ```
 function myfunction(a,b,c)
   implicit none
-  real, intent(in) :: b
+  real, intent(in) :: b, c
   real, intent(out) :: myfunction
   real, intent(inout) :: a
   a = a + b + c
@@ -144,7 +144,7 @@ function myfunction(a,b,c)
  end function
  ```
  
- A function can also be a ```pure function```. This implies that the function will only 
+ A function can also be a ```pure function```. This implies that the function will only change he behavior of the output (i.e. the variable ```myfunction``` above). It is a key word to be sure that nothing else is altered.
 
 
 
