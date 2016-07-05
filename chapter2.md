@@ -7,6 +7,14 @@ FORTRAN is a bit different from Matalab. It is a low level language. Concretely 
 
 ## 1. Writing the code
 
+To write the code use Atom. Open a file and call it ```myprogram.f90```. That's your *main* file. It has the following structure.
+
+```
+program main
+  the code here
+end program
+```
+
 ## 2. Compiling the code
 
 ## 3. Executing the code
