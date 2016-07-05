@@ -1,2 +1,2 @@
-# Second Chapter
+# Second Chapter: Simple programming in FORTRAN
 
