@@ -131,7 +131,20 @@ end program
 
 # More on functions and subroutines
 
-In both function and subroutine, one can specify is the arguments of the function/subroutine are to be altered by using the keywords ```intent(in)```, ```intent(out)``` and ```intent(inout)```.
+In both function and subroutine, one can specify is the arguments of the function/subroutine are to be altered by using the keywords ```intent(in)```, ```intent(out)``` and ```intent(inout)```. ```intent(in)``` means that the variable should not be altered inside the function (input only). ```intent(out)``` means that whatever the value given to the variable before it enters the function as an argument, this value is ignored. With ```intent(inout)``` the variable can be altered and the value it has before entering the function is still assigned to it at the begining of the function. For example
+```
+function myfunction(a,b,c)
+  implicit none
+  real, intent(in) :: b
+  real, intent(out) :: myfunction
+  real, intent(inout) :: a
+  a = a + b + c
+  c = 1000
+  myfunc
+ end function
+ ```
+ 
+ A function can also be a ```pure function```. This implies that the function will only 
 
 
 
