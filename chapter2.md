@@ -131,7 +131,7 @@ end program
 
 # More on functions and subroutines
 
-In both function and subroutine, one can specify is the 
+In both function and subroutine, one can specify is the arguments of the function/subroutine are to be altered by using the keywords ```intent(in)```, ```intent(out)``` and ```intent(inout)```.
 
 
 
