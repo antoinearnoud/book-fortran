@@ -1,2 +1,2 @@
-# Sixth Chapter
+# Sixth Chapter: Using Libraries
 
