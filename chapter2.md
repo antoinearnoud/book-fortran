@@ -82,7 +82,7 @@ function myfunction(a,b,c)
   myfunction = a + b + c
 end function
 ```
-To call this function into the main program you would write alltogether
+To call this function into the main program you would write altogether
 ```
 program myprogram
   implicit none
@@ -100,3 +100,41 @@ end program
 The key word ```contains``` tells the compiler that the code following this key word contains the definitions of functions and subroutines. 
 
 In the definition of the function, if you used as an argument a variable that has already been defined (such as ```x1```, ```x2``` or ```x3```), the variable should still be re-declared in the function. True?
+
+A module is similar to a function but it does not return a variable. Instead, it executes the code inside it. Declaring a subroutine goes as follows
+```
+subroutine mysubroutine(a,b,c)
+  implicit none
+  real :: a, b, c
+  a = a + b + c
+  b = 0
+  c = -1000
+end subroutine
+```
+This subroutine will change the value of the three variables. You use a subroutine into your program with the following code:
+```
+program myprogram
+  implicit none
+  real :: x1,x2,x3, easy_sum
+  call mysubroutine(x1,x2,x3)
+  
+  contains
+  subroutine mysubroutine(a,b,c)
+    implicit none
+    real :: a, b, c
+    a = a + b + c
+    b = 0
+    c = -1000
+  end subroutine
+end program
+```
+
+# More on functions and subroutines
+
+In both function and subroutine, one can specify is the 
+
+
+
+
+
+
