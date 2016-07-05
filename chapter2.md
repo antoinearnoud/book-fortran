@@ -36,6 +36,8 @@ gfortran -o myprogr_exe myprogramf90
 ```
 This tells the compiler to call the output file ```myprog_exe```. It uses the *flag* (or option) ```-o``` followed by the argument to this flag. You can use any name you want for the executable file.
 
+To compile a program with modules or a library, see next chapters.
+
 ### 3. Executing the code
 
 It is only when executing the file that the code will be executed and the computations run. To execute the file type in the 
@@ -140,8 +142,8 @@ function myfunction(a,b,c)
   real, intent(inout) :: a
   a = a + b + c
   myfunc = a
- end function
- ```
+end function
+```
  
  A function can also be a ```pure function```. This implies that the function will only change he behavior of the output (i.e. the variable ```myfunction``` above). It is a key word to be sure that nothing else is altered.
 ```
@@ -153,8 +155,8 @@ function pure myfunction(a,b,c)
   a = a + b + c
   c = 1000
   myfunc
- end function
- ```
+end function
+```
  This will not work (check) because ```a``` is an argument of a pure function, but the function tries to modify it.
 
 # Types and arrays, parameters
@@ -189,7 +191,11 @@ real, save :: a
 real :: b =5
 ```
 
+# Comments
+To write a comment in FORTRAN just use ```!``` at the beginning of the sentence.
 
+# Break lines
 
+To break a line in FORTRAN, use ```&``` at the end of the line you want to break, and start the next line right below.
 
 
