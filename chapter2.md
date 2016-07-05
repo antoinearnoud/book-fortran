@@ -145,7 +145,18 @@ function myfunction(a,b,c)
  ```
  
  A function can also be a ```pure function```. This implies that the function will only change he behavior of the output (i.e. the variable ```myfunction``` above). It is a key word to be sure that nothing else is altered.
-
+```
+function pure myfunction(a,b,c)
+  implicit none
+  real, intent(in) :: b, c
+  real, intent(out) :: myfunction
+  real, intent(inout) :: a
+  a = a + b + c
+  c = 1000
+  myfunc
+ end function
+ ```
+ This will not work (check) because ```a``` is an argument of a pure function, but the function tries to modify it.
 
 
 
