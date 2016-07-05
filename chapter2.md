@@ -86,8 +86,8 @@ To call this function into the main program you would write alltogether
 ```
 program myprogram
   implicit none
-  real :: a,b,c, easy_sum
-  easy_sum = myfunction(a,b,c)
+  real :: x1,x2,x3, easy_sum
+  easy_sum = myfunction(x1,x2,x3)
   
   contains
   function myfunction(a,b,c)
@@ -97,3 +97,6 @@ program myprogram
   end function
 end program
 ```
+The key word ```contains``` tells the compiler that the code following this key word contains the definitions of functions and subroutines. 
+
+In the definition of the function, if you used as an argument a variable that has already been defined (such as ```x1```, ```x2``` or ```x3```), the variable should still be re-declared in the function. True?
