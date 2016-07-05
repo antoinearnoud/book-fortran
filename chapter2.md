@@ -139,8 +139,7 @@ function myfunction(a,b,c)
   real, intent(out) :: myfunction
   real, intent(inout) :: a
   a = a + b + c
-  c = 1000
-  myfunc
+  myfunc = a
  end function
  ```
  
@@ -157,6 +156,38 @@ function pure myfunction(a,b,c)
  end function
  ```
  This will not work (check) because ```a``` is an argument of a pure function, but the function tries to modify it.
+
+# Types and arrays, parameters
+
+To declare an array (vector) ```a``` and a matrix ```b``` use
+```
+real :: a(5)
+real :: b(5,4)
+```
+or, equivalently
+```
+real, dimension(5) :: a
+real, dimension(5,4) :: b
+```
+The first way is convenient to declare arrays of different dimensions on the same line
+```
+real :: a(5), b(5,4)
+```
+You can also use the keyword ```p[arameter```. This means that the variable *cannot* change value. You must therefore initialize it at the same time you declare it.
+```
+real, parameter :: a = 5
+real, dimension(5,4), parameter :: b = (5, 4, 3)
+```
+(check if this works)
+
+# ```Save``` keyword, initialization-declaration
+
+The keyword ```save``` is used to make a variable global (see next chapter). 
+Another way to make a variable global is to assigns it a value at the same time as the declaration.
+```
+real, save :: a
+real :: b =5
+```
 
 
 
