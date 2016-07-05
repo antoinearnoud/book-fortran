@@ -42,9 +42,58 @@ It is only when executing the file that the code will be executed and the comput
 ```
 ./a
 ```
-or, if you used the ```-o`` flag
+Or, if you used the ```-o``` flag:
 ```
 ./myprog_exe
 ```
+## Declaring variables
 
+You need to declare all the variables you will use. For example, putting together the code written above:
+```
+program myprogram
+  implicit none
+  real :: a, b, c
+  the code here
+end program
+```
+The key words ```implicit none``` means that you want all the variables used to be first declared. Hence if in the ```the code here``` part you use other letters, such that ```d```, the code will return an error when you try to compile it. It is possible no to use ```implicit none```, which allows you to use variables not declared, but you should *never* to this (mostly because then the variables have some default types). Note that here we declared the variables as ```real```. There are other types, and the most usual are
+```
+integer
+double
+character
+```
+The type ```character``` is for strings.
 
+## Functions and Subroutines
+
+In FORTRAN you can use two types of blocs of code which you provide with input: the function and the subroutine. Consider these two as quite similar. The function is defined as follows:
+```
+function myfunction(a,b,c)
+  implicit none
+  real :: a,b,c, myfunction
+  the code here
+end function
+```
+As you can see, one needs to declare all the variables that are passed as arguments (here ```a```, ```b``` and ```c```) as well as the output variable which *has the same name as the function*. For example, the function could do
+```
+function myfunction(a,b,c)
+  implicit none
+  real :: a,b,c, myfunction
+  myfunction = a + b + c
+end function
+```
+To call this function into the main program you would write alltogether
+```
+program myprogram
+  implicit none
+  real :: a,b,c, easy_sum
+  easy_sum = myfunction(a,b,c)
+  
+  contains
+  function myfunction(a,b,c)
+    implicit none
+    real :: a,b,c, myfunction
+    myfunction = a + b + c
+  end function
+end program
+```
