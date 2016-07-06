@@ -120,7 +120,7 @@ end program
 ```
 In this example, ```easy_sum``` will be equal to ```1000 + x1 + x2 + x3```.
 
-A module is similar to a function but it does not return a variable. Instead, it executes the code inside it. Declaring a subroutine goes as follows
+A subroutine is similar to a function but it does not return a variable. Instead, it executes the code inside it. Declaring a subroutine goes as follows
 ```
 subroutine mysubroutine(a,b,c)
   implicit none
