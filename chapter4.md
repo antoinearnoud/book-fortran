@@ -15,8 +15,13 @@ program myprogram
   use openmp
   implicit none
   real :: a
-  some code here with parallelization
+  some code here with parallelization (see below)
 end program
+```
+
+When compiling with gfortran (on Unix machines), you will need to use a flag ```-fopenmp```:
+```
+gfortran -fopenmp -o myexec myprogram.f90
 ```
 
 ## Do-loop with OpenMP
