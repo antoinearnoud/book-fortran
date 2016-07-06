@@ -146,12 +146,12 @@ end function
 ```
  Note that you **should not** have an ```intet(out)``` before the return of the function (here ```myfunction```).
  
- A function can also be a ```pure function```. This implies that the function will only change he behavior of the output (i.e. the variable ```myfunction``` above). It is a key word to be sure that nothing else is altered.
+A function can also be a ```pure function```. This implies that the function will only change he behavior of the output (i.e. the variable ```myfunction``` above). It is a key word to be sure that nothing else is altered.
 ```
 function pure myfunction(a,b,c)
   implicit none
   real, intent(in) :: b, c
-  real, intent(out) :: myfunction
+  real :: myfunction
   real, intent(inout) :: a
   a = a + b + c
   c = 1000
