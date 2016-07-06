@@ -51,6 +51,8 @@ end program
 ```
 This way, OpenMP will choose automatically the number of cores at disposal and send to each of them approximately the same number of tasks.
 
+You can know the number of threads by using the OpenMP subroutine ```get_number_threads()``` (returns an integer) before entering the parallel region.
+
 Note that to break lines in an OpenMP instruction you need ```,&``` at the end of the line and ```!$openmp&``` at the beginning of the next line.
 
 ## Private / Shared Variables with OpenMP
