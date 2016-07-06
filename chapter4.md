@@ -57,9 +57,9 @@ Note that to break lines in an OpenMP instruction you need ```,&``` at the end o
 
 ## Private / Shared Variables with OpenMP
 
-Note that each core (thread) will write its own value on the variables. It is therefore important to precise if the variable is to be shared by each thread or not. If shread, each thread reads the value that has been potentially given by another thread. If private, each variable is duplicated in each thread at the beginning (with no value assigned to it!) and lives its own life. At the end of the parallel block, the variable has no value anymore.
+Note that each core (thread) will write its own value on the variables. It is therefore important to indicate if the variable is to be shared by each thread or not. If shared, each thread reads the value that has been potentially given by another thread. If private, each variable is duplicated in each thread at the beginning (with no value assigned to it!) and lives its own life. At the end of the parallel block, the variable has no value anymore.
 
-The dummy integer of the loop is necessarily private (no need to precise it).
+The dummy integer of the loop is necessarily private (no need to indicate it is private).
 
 Parameters cannot be declared as shared or private because their value cannot change. In some sense, they are necessarily shared.
 
