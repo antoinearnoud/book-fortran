@@ -39,7 +39,7 @@ end program
 You can use
 ```
 program myprogram
-  use openmp
+  use omp_lib
   implicit none
   real :: a(100)
   !$omp parallel do
@@ -53,5 +53,14 @@ This way, OpenMP will choose automatically the number of cores at disposal and s
 
 ## Private / Shared Variables with OpenMP
 
+Module variables can only be shared, unless you use a special trick. The trick is that you need to declare them as ```threadprivate``` in the module where they are defined. Note that you need to ```use``` the ```openmp``` module.
+```
+mymodule
+  !$ use omp_lib
+  implicit none
+  real :: a
+  !$ threadprivate(a)
+end mymodule
+```
 
 ## OpenMP with modules
