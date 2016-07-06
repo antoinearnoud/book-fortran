@@ -50,9 +50,9 @@ program myprogram
   !$omp end parallel do
 end program
 ```
-This way, OpenMP will choose automatically the number of cores at disposal and send to each of them approximately the same number of tasks.
+This way, OpenMP will choose automatically the number of cores at disposal and send to each of them approximately the same number of tasks. Here by default the variable ```a``` is shared (see below).
 
-You can know the number of threads by using the OpenMP subroutine ```get_number_threads()``` (returns an integer) before entering the parallel region.
+You can know the number of threads by using the OpenMP subroutine ```omp_get_num_threads()``` (returns an integer) before entering the parallel region. You can get the thread number by using ```omp_get_thread_num()```.
 
 Note that to break lines in an OpenMP instruction you need ```,&``` at the end of the line and ```!$openmp&``` at the beginning of the next line.
 
