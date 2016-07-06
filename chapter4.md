@@ -9,7 +9,7 @@ Parallelizing a code in FORTRAN can allow to gain much time. It is not too diffi
 
 On easy way to parallelize is to use OpenMP. On Unix machines OpenMP is included (if not go here).
 
-To use OpenMP you must first load the module in the files that will use OpenMP command. 
+To use OpenMP you must first load the module in the files that will use OpenMP command. For example
 ```
 program myprogram
   use openmp
