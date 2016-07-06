@@ -9,4 +9,5 @@
 * [Sixth Chapter](chapter6.md)
 * [Seventh Chapter](chapter7.md)
 * [Eigth Chapter](chapter8.md)
+* Chapter Nine
 
