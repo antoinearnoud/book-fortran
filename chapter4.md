@@ -26,7 +26,7 @@ gfortran -fopenmp -o myexec myprogram.f90
 
 ## Do-loop with OpenMP
 
-The most commonly use of OpenMP is in do-loop. Imagine you have a loop that computes something at each iteration, independently of previous iterations. This is the perfect environment to use openmp. OpenMP will execute the computation of different iterations on different cores at the same time. Without OpenMP each iteration would have to been done before the next one starts. Instead of using this
+The most commonly use of OpenMP is in do-loop. Imagine you have a the following simple code:
 ```
 program myprogram
   implicit none
@@ -36,6 +36,7 @@ program myprogram
   end do
 end program
 ```
+In the above code, the loop that computes something at each iteration, independently of previous iterations. This is the perfect environment to use openmp. OpenMP will execute the computation of different iterations on different cores at the same time. Without OpenMP each iteration would have to been done before the next one starts. Instead of using this
 You can use
 ```
 program myprogram
