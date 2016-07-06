@@ -150,7 +150,7 @@ end program
 
 # More on functions and subroutines
 
-In both function and subroutine, one can specify is the arguments of the function/subroutine are to be altered by using the keywords ```intent(in)```, ```intent(out)``` and ```intent(inout)```. ```intent(in)``` means that the variable should not be altered inside the function (input only). ```intent(out)``` means that whatever the value given to the variable before it enters the function as an argument, this value is ignored. With ```intent(inout)``` the variable can be altered and the value it has before entering the function is still assigned to it at the begining of the function. For example
+In both function and subroutine, one can specify is the arguments of the function/subroutine are to be altered by using the keywords ```intent(in)```, ```intent(out)``` and ```intent(inout)```. ```intent(in)``` means that the variable should not be altered inside the function (input only). ```intent(out)``` means that whatever the value given to the variable before it enters the function as an argument, this value is ignored. With ```intent(inout)``` the variable can be altered and the value it has before entering the function is still assigned to it at the beginning of the function. For example
 ```
 function myfunction(a,b,c)
   implicit none
@@ -165,17 +165,16 @@ end function
  
 A function can also be a ```pure function```. This implies that the function will only change he behavior of the output (i.e. the variable ```myfunction``` above). It is a key word to be sure that nothing else is altered.
 ```
-function pure myfunction(a,b,c)
+pure function myfunction(a,b,c)
   implicit none
   real, intent(in) :: b, c
   real :: myfunction
   real, intent(inout) :: a
   a = a + b + c
-  c = 1000
-  myfunc
+  myfunc = a + b + c
 end function
 ```
- This will not work (check) because ```a``` is an argument of a pure function, but the function tries to modify it.
+ This will not work (check) because ```a``` is an argument of a pure function, but the function tries to modify it (one should change the ```intent(inout) :: a``` into ```intent(in) :: a``` as well as delete ```a = a + b + c```.
 
 # Types and arrays, parameters
 
