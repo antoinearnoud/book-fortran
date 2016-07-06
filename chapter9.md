@@ -1,2 +1,2 @@
-# Chapter Nine
+# Chapter Nine: Optimization flags and Misc.
 
