@@ -3,7 +3,7 @@
 
 ## What is paralelization ?
 
-Parallelizing a code in fortran allows sometimes to gain much high time. It is not too difficult but one needs to be careful.
+Parallelizing a code in FORTRAN allows sometimes to gain much high time. It is not too difficult but one needs to be careful.
 
 ## Using OpenMP
 
