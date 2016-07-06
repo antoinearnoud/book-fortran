@@ -51,6 +51,8 @@ end program
 ```
 This way, OpenMP will choose automatically the number of cores at disposal and send to each of them approximately the same number of tasks.
 
+Note that to break lines in an OpenMP instruction you need ```,&``` at the end of the line and ```!$openmp&``` at the beginning of the next line.
+
 ## Private / Shared Variables with OpenMP
 
 Note that each core (thread) will write its own value on the variables. It is therefore important to precise if the variable is to be shared by each thread or not. If shread, each thread reads the value that has been potentially given by another thread. If private, each variable is duplicated in each thread at the beginning (with no value assigned to it!) and lives its own life. At the end of the parallel block, the variable has no value anymore.
