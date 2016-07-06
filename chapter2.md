@@ -101,7 +101,24 @@ end program
 ```
 The key word ```contains``` tells the compiler that the code following this key word contains the definitions of functions and subroutines. 
 
-In the definition of the function, if you used as an argument a variable that has already been defined (such as ```x1```, ```x2``` or ```x3```), the variable should still be re-declared in the function. True?
+In the definition of the function, the variables passed as argument are local: they can have the same name as variables in the main part (above ```contains```), this will not affect them. One can however  use variables defined above ```contains```inside the function, such as:
+
+```
+program myprogram
+  implicit none
+  real :: x1,x2,x3, easy_sum, big_number
+  big_number = 1000
+  easy_sum = myfunction(x1,x2,x3)
+  
+  contains
+  function myfunction(a,b,c)
+    implicit none
+    real :: a,b,c, myfunction
+    myfunction = a + b + c + bignumber
+  end function
+end program
+```
+In this example, ```easy_sum``` will be equal to ```1000 + x1 + x2 + x3```.
 
 A module is similar to a function but it does not return a variable. Instead, it executes the code inside it. Declaring a subroutine goes as follows
 ```
