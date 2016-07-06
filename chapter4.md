@@ -53,6 +53,10 @@ This way, OpenMP will choose automatically the number of cores at disposal and s
 
 ## Private / Shared Variables with OpenMP
 
+Parameter cannot be declared as shared or private because their value cannot change. In some sense, they are necessarily shar
+
+## OpenMP with modules
+
 Module variables can only be shared, unless you use a special trick. The trick is that you need to declare them as ```threadprivate``` in the module where they are defined. Note that you need to ```use``` the ```openmp``` module.
 ```
 mymodule
@@ -63,4 +67,3 @@ mymodule
 end mymodule
 ```
 
-## OpenMP with modules
