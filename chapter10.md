@@ -1,2 +1,2 @@
-# Chapter Tenth
+# Chapter Tenth: Appendix - Bash commands
 
