@@ -3,6 +3,5 @@
 You might need the following commands:
 ```
 chmod u+x name_of_file
+sed
 ```
-or ```sed```
-
