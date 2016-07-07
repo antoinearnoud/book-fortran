@@ -10,5 +10,5 @@
 * [Seventh Chapter](chapter7.md)
 * [Eigth Chapter](chapter8.md)
 * [Chapter Nine](chapter9.md)
-* Chapter Tenth
+* [Chapter Tenth](chapter10.md)
 
