@@ -9,10 +9,12 @@ Parallelizing a code in FORTRAN can allow to gain much time. It is not too diffi
 
 On easy way to parallelize is to use OpenMP. On Unix machines OpenMP is included (if not go here).
 
+All the commands that refer to OpenMP must be preceeded by ```!$```.
+
 To use OpenMP you must first load the module in the files that will use OpenMP command. For example
 ```
 program myprogram
-  use openmp
+  !$ use omp_lib
   implicit none
   real :: a
   some code here with parallelization (see below)
@@ -40,7 +42,7 @@ In the above code, the loop that computes something at each iteration, independe
 You can use
 ```
 program myprogram
-  use omp_lib
+  !$ use omp_lib
   implicit none
   real :: a(100)
   !$omp parallel do
@@ -66,7 +68,7 @@ Parameters cannot be declared as shared or private because their value cannot ch
 
 ## OpenMP with modules
 
-Module variables can only be shared, unless you use a special trick. The trick is that you need to declare them as ```threadprivate``` in the module where they are defined. Note that you need to ```use``` the ```openmp``` module.
+Module variables can only be shared, unless you use a special trick. The trick is that you need to declare them as ```threadprivate``` in the module where they are defined. Note that you need to have the line ```!$ use omp_lib``` at the beginning of the module.
 ```
 mymodule
   !$ use omp_lib
