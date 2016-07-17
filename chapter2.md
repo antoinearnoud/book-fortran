@@ -8,14 +8,14 @@ FORTRAN is a bit different from Matalab. It is a low level language. Concretely 
 ## How to start
 ### 1. Writing the code
 
-To write the code use any text editor. It might be more convenient to use an editor specialized in FORTRAN such as Atom. In Atom the syntax is colored according to FORTRAN conventions. You can for example use Atom. Open a file and call it```myprogram.f90```. That's your *main* file. It has the following structure.
+To write the code use any text editor. It might be more convenient to use an editor specialized in FORTRAN such as *Atom*. In Atom the syntax is colored according to FORTRAN conventions. You would need to download *Atom* from *Github* website. dALso you need to add the package *Fortran syntax*. Once you have chosen your editor, oOpen a file and call it```myprogram.f90```. That's your *main* file. It has the following structure.
 
 ```
 program main
   the code here
 end program
 ```
-You do not need to call the program```main```. You can also call it ```myprogram``` or any other name, as long as the file starts with```program``` and ends with ends with```end program```.
+You do not need to call the program```main```. You can also call it ```myprogram``` or any other name, as long as the file starts with```program``` and ends with```end program```.
 
 The ```the code here``` part is some FORTRAN code that we will cover later. For now, note that the code must be *closed* meaning that the whole structure must be consistent. In this case it means that we start with a key word ```program``` and ends with the key words ```end program```. This is different from Matlab where your code might only contains something like
 ```
@@ -30,7 +30,7 @@ To compile the code one needs a compiler (see Chapter 1). On Unix machine, open 
 ```
 gfortran myprogram.f90
 ```
-This will produce a new file (an executable). By default the new file is called ```a```. You can change this to give the file a more convenient name, for example ```myprog_exec``` using
+This will produce a new file (an executable). By default the new file is called ```a```. You can change this to give the file a more convenient name, for example ```myprog_exe```. To do so, use the option ```-o```:
 ```
 gfortran -o myprogr_exe myprogramf90
 ```
@@ -40,7 +40,7 @@ To compile a program with modules or a library, see next chapters.
 
 ### 3. Executing the code
 
-It is only when executing the file that the code will be executed and the computations run. To execute the file type in the 
+It is only when executing the file that the code will be executed and the computations run. To execute the file type in the terminal
 ```
 ./a
 ```
@@ -55,10 +55,10 @@ You need to declare all the variables you will use. For example, putting togethe
 program myprogram
   implicit none
   real :: a, b, c
-  the code here
+  the code that uses a b and c here
 end program
 ```
-The key words ```implicit none``` means that you want all the variables used to be first declared. Hence if in the ```the code here``` part you use other letters, such that ```d```, the code will return an error when you try to compile it. It is possible no to use ```implicit none```, which allows you to use variables not declared, but you should *never* to this (mostly because then the variables have some default types). Note that here we declared the variables as ```real```. There are other types, and the most usual are
+The key words ```implicit none``` means that you want all the variables used to be first declared. Hence if in the ```the code here``` part you use other letters, such that ```d```, the code will return an error when you try to compile it. It is possible no to use ```implicit none``` which allows you to use variables not declared. However, you should *never* do this (mostly because then the variables have some default types). Note that here we declared the variables as ```real```. There are other types, and the most usual are
 ```
 integer
 double
@@ -163,7 +163,7 @@ end function
 ```
  Note that you **should not** have an ```intet(out)``` before the return of the function (here ```myfunction```).
  
-A function can also be a ```pure function```. This implies that the function will only change he behavior of the output (i.e. the variable ```myfunction``` above). It is a key word to be sure that nothing else is altered.
+A function can also be a ```pure function```. This implies that the function will only change the behavior of the output (i.e. the variable ```myfunction``` above). It is a key word to be sure that nothing else is altered.
 ```
 pure function myfunction(a,b,c)
   implicit none
@@ -192,14 +192,14 @@ The first way is convenient to declare arrays of different dimensions on the sam
 ```
 real :: a(5), b(5,4)
 ```
-You can also use the keyword ```p[arameter```. This means that the variable *cannot* change value. You must therefore initialize it at the same time you declare it.
+You can also use the keyword ```parameter```. This means that the variable *cannot* change value. You must therefore initialize it at the same time you declare it.
 ```
 real, parameter :: a = 5
 real, dimension(5,4), parameter :: b = (5, 4, 3)
 ```
 (check if this works)
 
-# ```Save``` keyword, initialization-declaration
+# ```Save``` keyword, initialization-declaration (i think this is wrong)
 
 The keyword ```save``` is used to make a variable global (see next chapter). 
 Another way to make a variable global is to assigns it a value at the same time as the declaration.
