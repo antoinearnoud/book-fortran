@@ -256,7 +256,7 @@ real :: b =5
 
 # Comments
 
-To write a comment in FORTRAN just use `!` at the beginning of the sentence.
+To write a comment in FORTRAN, use `!` at the beginning of the comment.
 
 # Break lines
 
