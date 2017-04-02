@@ -1,4 +1,4 @@
-# FORTRAN for Economists
+# FORTRAN for Social Scientists & Economists
 
 ## Why this book?
 
