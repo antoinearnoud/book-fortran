@@ -1,4 +1,4 @@
-# Third Chapter: Full FORTRAN programming using modules
+# Full FORTRAN programming using modules
 
 ## What is a module?
 
@@ -6,8 +6,9 @@ A module is a way to store variables and functions/subroutines that are availabl
 
 ## How to write a module
 
-To store variables that must be accessible everywhere in a program, you need to create a file called (for example) ```mymodule.f90``` which would contains
-```
+To store variables that must be accessible everywhere in a program, you need to create a file called \(for example\) `mymodule.f90` which would contains
+
+```fortran
 module mymodule
   implicit none
   real :: a
@@ -21,8 +22,10 @@ module mymodule
     functionInModule = x-y
 end module
 ```
+
 And the main program becomes
-```
+
+```fortran
 program myprogram
   use mymodule
   implicit none
@@ -32,9 +35,11 @@ program myprogram
   z = functionInModule(w,w)
 end program
 ```
-Note the ```use mymodule``` at the begining of the program before the ```implicit none```. Because of this line, all the variables and functions/subroutines declared in the module can be used in the program.
 
-One can also use ```use mymodule, only: variable/function/subroutine``` to make only part of the variables or functions available. For example
+Note the `use mymodule` at the begining of the program before the `implicit none`. Because of this line, all the variables and functions/subroutines declared in the module can be used in the program.
+
+One can also use `use mymodule, only: variable/function/subroutine` to make only part of the variables or functions available. For example
+
 ```
 program myprogram
   use mymodule, only: functionInModule
@@ -43,4 +48,6 @@ program myprogram
   z = functionInModule
 end program
 ```
+
 Why would you want to do that?
+
