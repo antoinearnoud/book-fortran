@@ -16,10 +16,11 @@ module mymodule
   a = 5
   b = 6
   contains
-  functionInModule(x,y)
-    implicit none
-    real :: x, y, functionInModule
-    functionInModule = x-y
+    function functionInModule(x,y)
+      implicit none
+      real :: x, y, functionInModule
+      functionInModule = x-y
+    end function
 end module
 ```
 
@@ -36,16 +37,18 @@ program myprogram
 end program
 ```
 
-Note the `use mymodule` at the begining of the program before the `implicit none`. Because of this line, all the variables and functions/subroutines declared in the module can be used in the program.
+Note the `use mymodule` at the beginning of the program before the `implicit none`. Because of this line, all the variables and functions/subroutines declared in the module can be used in the program.
 
 One can also use `use mymodule, only: variable/function/subroutine` to make only part of the variables or functions available. For example
 
-```
+```fortran
 program myprogram
   use mymodule, only: functionInModule
   implicit none
-  real :: w,z
-  z = functionInModule
+  real :: w,z,r
+  w = 1
+  r = 2
+  z = functionInModule(w,r)
 end program
 ```
 
