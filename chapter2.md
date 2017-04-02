@@ -220,32 +220,29 @@ This will not work \(to check\) because `a` is an argument of a pure function, b
 
 To declare an array \(vector\) `a` and a matrix `b` use
 
-```
+```fortran
 real :: a(5)
 real :: b(5,4)
 ```
 
 or, equivalently
 
-```
+```fortran
 real, dimension(5) :: a
 real, dimension(5,4) :: b
 ```
 
 The first way is convenient to declare arrays of different dimensions on the same line
 
-```
+```fortran
 real :: a(5), b(5,4)
 ```
 
 You can also use the keyword `parameter`. This means that the variable _cannot_ change value. You must therefore initialize it at the same time you declare it.
 
+```fortran
+real, parameter :: d = 5
 ```
-real, parameter :: a = 5
-real, dimension(5,4), parameter :: b = (5, 4, 3)
-```
-
-\(check if this works\)
 
 # `Save` keyword, initialization-declaration \(i think this is wrong\)
 
