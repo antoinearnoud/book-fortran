@@ -9,7 +9,7 @@ FORTRAN is a bit different from, say, Matalab. It is a low level language. Concr
 
 ### 1. Writing the code
 
-To write the code use any text editor. It might be more convenient to use an editor specialized in FORTRAN such as _Atom _\(from _Github\)_ or _SublimeText_. In these editors the syntax is colored according to FORTRAN conventions. To use _Atom, _one needs to download _Atom_ from _Github_ website and to add the _Fortran syntax_ package. 
+To write the code use any text editor. It might be more convenient to use an editor specialized in FORTRAN such as _Atom _\(from _Github\)_ or _SublimeText_. In these editors the syntax is colored according to FORTRAN conventions. To use _Atom, \_one needs to download \_Atom_ from _Github_ website and to add the _Fortran syntax_ package.
 
 To start writing code, create a new a file and call it`myprogram.f90`. That's your _main_ file. It has the following structure.
 
@@ -89,7 +89,7 @@ In FORTRAN you can use two types of blocs of code which you provide with input: 
 
 ### Functions
 
-The function is defined as follows:
+A function is defined as follows:
 
 ```fortran
 function myfunction(a,b,c)
@@ -99,7 +99,7 @@ function myfunction(a,b,c)
 end function
 ```
 
-As you can see, one needs to declare all the variables that are passed as arguments \(here `a`, `b` and `c`\) as well as the output variable which _has the same name as the function_. For example, the function could do
+As you can see, one needs to declare all the variables that are passed as arguments \(here `a`, `b` and `c`\) as well as the output variable which must _have the same name as the function_. For example, the function could do
 
 ```fortran
 function myfunction(a,b,c)
@@ -130,11 +130,14 @@ The key word `contains` tells the compiler that the code following this key word
 
 In the definition of the function, the variables passed as argument are local: they can have the same name as variables in the main part \(above `contains`\), this will not affect them. One can however  use variables defined above `contains`inside the function, such as:
 
-```
+```fortran
 program myprogram
   implicit none
   real :: x1,x2,x3, easy_sum, big_number
   big_number = 1000
+  x1 = 1
+  x2 = 2
+  x3 = 3
   easy_sum = myfunction(x1,x2,x3)
 
   contains
@@ -148,9 +151,11 @@ end program
 
 In this example, `easy_sum` will be equal to `1000 + x1 + x2 + x3`.
 
-A subroutine is similar to a function but it does not return a variable. Instead, it executes the code inside it. Declaring a subroutine goes as follows
+### Subroutines
 
-```
+A subroutine is similar to a function but it does not return a variable. Instead, it executes the code inside it. Declaring a subroutine is done as follows
+
+```fortran
 subroutine mysubroutine(a,b,c)
   implicit none
   real :: a, b, c
@@ -162,7 +167,7 @@ end subroutine
 
 This subroutine will change the value of the three variables. You use a subroutine into your program with the following code:
 
-```
+```fortran
 program myprogram
   implicit none
   real :: x1,x2,x3, easy_sum
@@ -183,7 +188,7 @@ end program
 
 In both function and subroutine, one can specify is the arguments of the function/subroutine are to be altered by using the keywords `intent(in)`, `intent(out)` and `intent(inout)`. `intent(in)` means that the variable should not be altered inside the function \(input only\). `intent(out)` means that whatever the value given to the variable before it enters the function as an argument, this value is ignored. With `intent(inout)` the variable can be altered and the value it has before entering the function is still assigned to it at the beginning of the function. For example
 
-```
+```fortran
 function myfunction(a,b,c)
   implicit none
   real, intent(in) :: b, c
@@ -194,11 +199,11 @@ function myfunction(a,b,c)
 end function
 ```
 
-Note that you **should not** have an `intet(out)` before the return of the function \(here `myfunction`\).
+Note that you **should not** have an `intent(out)` before the return of the function \(here `myfunction`\).
 
-A function can also be a `pure function`. This implies that the function will only change the behavior of the output \(i.e. the variable `myfunction` above\). It is a key word to be sure that nothing else is altered.
+A function can also be a `pure function`. This implies that the function will only change the behavior of the output \(i.e. the variable `myfunction` above\). It is a keyword used to make sure that nothing else is altered.
 
-```
+```fortran
 pure function myfunction(a,b,c)
   implicit none
   real, intent(in) :: b, c
@@ -209,7 +214,7 @@ pure function myfunction(a,b,c)
 end function
 ```
 
-This will not work \(check\) because `a` is an argument of a pure function, but the function tries to modify it \(one should change the `intent(inout) :: a` into `intent(in) :: a` as well as delete `a = a + b + c`.
+This will not work \(to check\) because `a` is an argument of a pure function, but the function tries to modify it. To have something working one needs to change the `intent(inout) :: a` into `intent(in) :: a` as well as to delete `a = a + b + c`.
 
 # Types and arrays, parameters
 
@@ -244,7 +249,7 @@ real, dimension(5,4), parameter :: b = (5, 4, 3)
 
 # `Save` keyword, initialization-declaration \(i think this is wrong\)
 
-The keyword `save` is used to make a variable global \(see next chapter\).   
+The keyword `save` is used to make a variable global \(see next chapter\).  
 Another way to make a variable global is to assigns it a value at the same time as the declaration.
 
 ```
