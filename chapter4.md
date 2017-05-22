@@ -1,17 +1,17 @@
 # Fourth Chapter: Parallelization using OpenMP
 
-
 ## What is paralelization ?
 
 Parallelizing a code in FORTRAN can allow to gain much time. It is not too difficult but one needs to be careful.
 
 ## Using OpenMP
 
-On easy way to parallelize is to use OpenMP. On Unix machines OpenMP is included (if not go here).
+On easy way to parallelize is to use OpenMP. On Unix machines OpenMP is included \(if not go here\).
 
-All the commands that refer to OpenMP must be preceeded by ```!$```.
+All the commands that refer to OpenMP must be preceeded by `!$`.
 
 To use OpenMP you must first load the module in the files that will use OpenMP command. For example
+
 ```
 program myprogram
   !$ use omp_lib
@@ -21,7 +21,8 @@ program myprogram
 end program
 ```
 
-When compiling with gfortran (on Unix machines), you will need to use a flag ```-fopenmp```:
+When compiling with gfortran \(on Unix machines\), you will need to use a flag `-fopenmp`:
+
 ```
 gfortran -fopenmp -o myexec myprogram.f90
 ```
@@ -29,6 +30,7 @@ gfortran -fopenmp -o myexec myprogram.f90
 ## Do-loop with OpenMP
 
 The most commonly use of OpenMP is in do-loop. Imagine you have a the following simple code:
+
 ```
 program myprogram
   implicit none
@@ -38,8 +40,9 @@ program myprogram
   end do
 end program
 ```
-In the above code, the loop that computes something at each iteration, independently of previous iterations. This is the perfect environment to use openmp. OpenMP will execute the computation of different iterations on different cores at the same time. Without OpenMP each iteration would have to been done before the next one starts. Instead of using this
-You can use
+
+In the above code, the loop that computes something at each iteration, independently of previous iterations. This is the perfect environment to use parallilization with OpenMP. OpenMP will execute the computation of different iterations on different cores at the same time. Without OpenMP each iteration would have to be finished before the next one starts, i.e. it will all be computed sequenially. To compute using OpenMP, you can write:
+
 ```
 program myprogram
   !$ use omp_lib
@@ -52,23 +55,48 @@ program myprogram
   !$omp end parallel do
 end program
 ```
-This way, OpenMP will choose automatically the number of cores at disposal and send to each of them approximately the same number of tasks. Here by default the variable ```a``` is shared (see below).
 
-You can know the number of threads by using the OpenMP subroutine ```omp_get_num_threads()``` (returns an integer) before entering the parallel region. You can get the thread number by using ```omp_get_thread_num()```.
+This way, OpenMP will automatically choose the number of cores at disposal and send to each of them approximately the same number of tasks. Here by default the variable `a` is shared \(see below\).
 
-Note that to break lines in an OpenMP instruction you need ```,&``` at the end of the line and ```!$openmp&``` at the beginning of the next line.
+You can know the number of threads by using the OpenMP subroutine `omp_get_num_threads()` \(returns an integer\) before entering the parallel region \(do-loop\). You can get the thread number by using `omp_get_thread_num()` inside the parallel region \(do-loop\).
+
+Note that to break lines in an OpenMP instruction you need `,&` at the end of the line and `!$openmp&` at the beginning of the next line.
+
+## Other loops with OpenMP 
 
 ## Private / Shared Variables with OpenMP
 
-Note that each core (thread) will write its own value on the variables. It is therefore important to indicate if the variable is to be shared by each thread or not. If shared, each thread reads the value that has been potentially given by another thread. If private, each variable is duplicated in each thread at the beginning (with no value assigned to it!) and lives its own life. At the end of the parallel block, the variable has no value anymore.
+Note that each core \(thread\) will write its own value on the variables. It is therefore important to indicate if the variable is to be shared by each thread or not. If shared, each thread reads the value that has been potentially given by another thread. If private, each variable is duplicated in each thread at the beginning \(with no value assigned to it!\) and lives its own life. At the end of the parallel block, the variable has no value anymore.
 
-The dummy integer of the loop is necessarily private (no need to indicate it is private).
+The dummy integer of the loop is necessarily private \(no need to indicate it is private\).
 
 Parameters cannot be declared as shared or private because their value cannot change. In some sense, they are necessarily shared.
 
+An example of code using private and shared indicators \[code to be checked by running it\]:
+
+> ```
+> program myprogram
+>   !$ use omp_lib
+>   implicit none
+>   real, parameter : pi = 3.1416
+>   real :: sharedvar = 2.0
+>   real :: privatevar
+>   real :: a(100)
+>   !$omp parallel default(none) shared(sharedvar) private(privatevar) do
+>   do i=1,100
+>     $! privatevar = omp_get_thread_num()
+>     a(i) = 2*i
+>   end do
+>   !$omp end parallel do
+> end program
+> ```
+
+The `default(none)` indicates that all variables must be specified as either `shared` or `private`, except the dummy for the loop, `i` and the parameters, here `pi` \(I think - to check\).
+
 ## OpenMP with modules
 
-Module variables can only be shared, unless you use a special trick. The trick is that you need to declare them as ```threadprivate``` in the module where they are defined. Note that you need to have the line ```!$ use omp_lib``` at the beginning of the module.
+Module variables can only be shared, unless you use a special trick. The trick is that you need to declare them as `threadprivate` in the module where they are defined. Note that you need to have the line `!$ use omp_lib` at the beginning of the module.
+
 ```
 mymodule
   !$ use omp_lib
@@ -77,4 +105,6 @@ mymodule
   !$ threadprivate(a)
 end mymodule
 ```
+
+
 
