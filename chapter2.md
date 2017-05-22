@@ -9,7 +9,7 @@ FORTRAN is a bit different from, say, Matalab. It is a low level language. Concr
 
 ### 1. Writing the code
 
-To write the code use any text editor. It might be more convenient to use an editor specialized in FORTRAN such as _Atom _\(from _Github\)_ or _SublimeText_. In these editors the syntax is colored according to FORTRAN conventions. To use _Atom, \_one needs to download \_Atom_ from _Github_ website and to add the _Fortran syntax_ package.
+To write the code use any text editor. It might be more convenient to use an editor specialized in FORTRAN such as _Atom _\(from _Github\)_ or _SublimeText_. In these editors the syntax is colored according to FORTRAN conventions. To use _Atom, _one needs to download _Atom_ from _Github_ website and to add the _Fortran syntax_ package.
 
 To start writing code, create a new a file and call it`myprogram.f90`. That's your _main_ file. It has the following structure.
 
@@ -21,7 +21,7 @@ end program
 
 You do not need to call the program`main`. You can also call it `myprogram` or any other name, as long as the file starts with`program` and ends with`end program`.
 
-The `the code here` part is some FORTRAN code that we will cover later. For now, note that the code must be _closed_ meaning that the whole structure must be consistent. In this case it means that we start with a keyword `program` and ends with the keywords `end program`. This is different from Matlab where your code might only contains something like
+The `the code here` part is some FORTRAN code that we will cover later. For now, note that the code must be _closed,_ meaning that the whole structure must be consistent. In this case it means that we start with a keyword `program` and ends with the keywords `end program`. This is different from Matlab where your code might only contains something like
 
 ```
 a = 3
@@ -43,13 +43,13 @@ This will produce a new file \(an executable\). By default, the new file is call
 gfortran -o myprogr_exe myprogramf90
 ```
 
-This tells the compiler to call the output file `myprog_exe`. It uses the _flag_ \(or option\) `-o` followed by the argument to this flag. You can use any name you want for the executable file.
+This tells the compiler to name the output file `myprog_exe`. It uses the _flag_ \(or option\) `-o` followed by the argument to this flag. You can use any name you want for the executable file.
 
 To compile a program with modules or a library, see next chapters.
 
 ### 3. Executing the code
 
-It is only when executing the file that the code will be executed and the computations run. To execute the file type in the terminal
+It is only when executing the file that the code will be executed and the computations run. To execute the file, type in the terminal
 
 ```bash
 ./a
@@ -63,7 +63,7 @@ Or, if you used the `-o` flag:
 
 ## Declaring variables
 
-You need to declare all the variables you will use. For example, putting together the code written above:
+You need to declare all the variables you will use. For example:
 
 ```fortran
 program myprogram
@@ -73,15 +73,23 @@ program myprogram
 end program
 ```
 
-The key words `implicit none` means that you want all the variables used to be first declared. Hence, if in the `the code here` part you use other letters, such as `d`, the code will return an error when you try to compile it. It is possible no to use `implicit none` which allows you to use variables not declared. However, you should _never_ do this \(mostly because the each letter of the alphabet has a default type if not declared\). Note that here we declared the variables as `real`. There are other types, and the most usual are
+The key words `implicit none` means that you want all the variables used to be first declared. Hence, if in the `the code here` part you use other letters, such as `d`, the code will return an error when you try to compile it. It is possible no to use `implicit none` which allows you to use variables not declared. However, you should _never_ do this \(mostly because each letter of the alphabet has a default type if not declared\). Note that here we declared the variables as `real`. There are other types, and the most usual types are
 
 ```fortran
+real
 integer
 character
-...
 ```
 
 The type `character` is for strings.
+
+For number, you can specify the number of bytes to use \(hence the precision\) by using the `kind`specifier.
+
+```fortran
+integer(kind=2) :: shortinteger
+integer(kind=4) :: longinteger
+integer(kind=16) :: verylonginteger 
+```
 
 ## Functions and Subroutines
 
@@ -151,6 +159,8 @@ end program
 
 In this example, `easy_sum` will be equal to `1000 + x1 + x2 + x3`.
 
+Note also that it seems that the variable `myfunction` cannot appear in the right-end side of any expression inside the function \[to be verified\].
+
 ### Subroutines
 
 A subroutine is similar to a function but it does not return a variable. Instead, it executes the code inside it. Declaring a subroutine is done as follows
@@ -159,9 +169,9 @@ A subroutine is similar to a function but it does not return a variable. Instead
 subroutine mysubroutine(a,b,c)
   implicit none
   real :: a, b, c
-  a = a + b + c
-  b = 0
-  c = -1000
+  a = 0
+  b = -1000
+  c = a + b
 end subroutine
 ```
 
@@ -177,16 +187,16 @@ program myprogram
   subroutine mysubroutine(a,b,c)
     implicit none
     real :: a, b, c
-    a = a + b + c
-    b = 0
-    c = -1000
+    a = 0
+    b = -1000
+    c = a + b
   end subroutine
 end program
 ```
 
 # More on functions and subroutines
 
-In both function and subroutine, one can specify is the arguments of the function/subroutine are to be altered by using the keywords `intent(in)`, `intent(out)` and `intent(inout)`. `intent(in)` means that the variable should not be altered inside the function \(input only\). `intent(out)` means that whatever the value given to the variable before it enters the function as an argument, this value is ignored. With `intent(inout)` the variable can be altered and the value it has before entering the function is still assigned to it at the beginning of the function. For example
+In both functions and subroutines, one can specify if the arguments of the function/subroutine are to be altered by using the keywords `intent(in)`, `intent(out)` and `intent(inout)`. `intent(in)` means that the variable should not be altered inside the function \(input only\). `intent(out)` means that whatever the value given to the variable before it enters the function as an argument, this value is ignored. With `intent(inout)` the variable can be altered and the value it has before entering the function is still assigned to it at the beginning of the function. For example
 
 ```fortran
 function myfunction(a,b,c)
@@ -214,7 +224,7 @@ pure function myfunction(a,b,c)
 end function
 ```
 
-This will not work \(to check\) because `a` is an argument of a pure function, but the function tries to modify it. To have something working one needs to change the `intent(inout) :: a` into `intent(in) :: a` as well as to delete `a = a + b + c`.
+This will not work \(to check\) because `a` is an argument of a pure function, but the function tries to modify it. To have something working one needs to change the `intent(inout) :: a` into `intent(in) :: a` as well as to delete `a = a + b + c` \(or create an intermediary variable `intvar = a + b + c` , and not forgetting to declare it with: `real :: intvar`\). 
 
 # Types and arrays, parameters
 

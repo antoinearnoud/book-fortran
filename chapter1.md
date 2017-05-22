@@ -1,6 +1,6 @@
 # Preliminary: Installing FORTRAN
 
-I recommend using Unix systems. On Unix machines \(such as Linux\), FORTRAN is already installed. If one does not have a Unix system, one can use Oracle Virtual Box yo create one.
+I recommend using Unix systems. On Unix machines \(such as Linux\), FORTRAN is already installed. If one does not have a Unix system, one can use Oracle Virtual Box to create one.
 
 ## Unix on Windows using Oracle
 
