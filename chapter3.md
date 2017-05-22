@@ -32,7 +32,7 @@ program myprogram
   implicit none
   real :: w, z
   some code here
-  w = a + b
+  w = 2
   z = functionInModule(w,w)
 end program
 ```
@@ -52,5 +52,5 @@ program myprogram
 end program
 ```
 
-Why would you want to do that?
+This can be done to make sure that other parameters contained in the module are not inadvertently modified in the program.
 
