@@ -9,7 +9,7 @@ FORTRAN is a bit different from, say, Matalab. It is a low level language. Concr
 
 ### 1. Writing the code
 
-To write the code use any text editor. It might be more convenient to use an editor specialized in FORTRAN such as _Atom _\(from _Github\)_ or _SublimeText_. In these editors the syntax is colored according to FORTRAN conventions. To use _Atom, _one needs to download _Atom_ from _Github_ website and to add the _Fortran syntax_ package.
+To write the code use any text editor. It might be more convenient to use an editor specialized in FORTRAN such as _Atom _\(from _Github\)_ or _SublimeText_. In these editors the syntax is colored according to FORTRAN conventions. To use _Atom, \_one needs to download \_Atom_ from _Github_ website and to add the _Fortran syntax_ package.
 
 To start writing code, create a new a file and call it`myprogram.f90`. That's your _main_ file. It has the following structure.
 
@@ -88,7 +88,7 @@ For number, you can specify the number of bytes to use \(hence the precision\) b
 ```fortran
 integer(kind=2) :: shortinteger
 integer(kind=4) :: longinteger
-integer(kind=16) :: verylonginteger 
+integer(kind=16) :: verylonginteger
 ```
 
 ## Functions and Subroutines
@@ -123,6 +123,9 @@ To call this function into the main program you would write altogether
 program myprogram
   implicit none
   real :: x1,x2,x3, easy_sum
+  x1 = 1
+  x2 = 2
+  x3 = 3
   easy_sum = myfunction(x1,x2,x3)
 
   contains
@@ -163,7 +166,7 @@ Note also that it seems that the variable `myfunction` cannot appear in the righ
 
 ### Subroutines
 
-A subroutine is similar to a function but it does not return a variable. Instead, it executes the code inside it. Declaring a subroutine is done as follows
+A subroutine is similar to a function but it does not necessarily return a variable. Instead, it executes the code inside it. Declaring a subroutine is done as follows
 
 ```fortran
 subroutine mysubroutine(a,b,c)
@@ -180,7 +183,7 @@ This subroutine will change the value of the three variables. You use a subrouti
 ```fortran
 program myprogram
   implicit none
-  real :: x1,x2,x3, easy_sum
+  real :: x1,x2,x3
   call mysubroutine(x1,x2,x3)
 
   contains
@@ -224,7 +227,7 @@ pure function myfunction(a,b,c)
 end function
 ```
 
-This will not work \(to check\) because `a` is an argument of a pure function, but the function tries to modify it. To have something working one needs to change the `intent(inout) :: a` into `intent(in) :: a` as well as to delete `a = a + b + c` \(or create an intermediary variable `intvar = a + b + c` , and not forgetting to declare it with: `real :: intvar`\). 
+This will not work \(to check\) because `a` is an argument of a pure function, but the function tries to modify it. To have something working one needs to change the `intent(inout) :: a` into `intent(in) :: a` as well as to delete `a = a + b + c` \(or create an intermediary variable `intvar = a + b + c` , and not forgetting to declare it with: `real :: intvar`\).
 
 # Types and arrays, parameters
 
@@ -254,15 +257,17 @@ You can also use the keyword `parameter`. This means that the variable _cannot_ 
 real, parameter :: d = 5
 ```
 
-# `Save` keyword, initialization-declaration \(i think this is wrong\)
+# `Save` keyword, initialization-declaration
 
-The keyword `save` is used to make a variable global \(see next chapter\).  
+The keyword `save` is used to make a variable global \(see next chapter\). More specifically,  `save` is a specification statement which can be used to ensure that variables and arrays used within a procedure \(local variable\) preserve their values between successive calls to the procedure.  
 Another way to make a variable global is to assigns it a value at the same time as the declaration.
 
-```
+```fortran
 real, save :: a
-real :: b =5
+real :: b = 5
 ```
+
+That is why it is dangerous to assign a value at the same time on declares a variable: at each iterative call, the starting value of the variable is the last one assigned to it, not the one assigned in the declaration \(here b = 5\). Overall, it is preferable to use modules instead of  `save`  \(see next chapter\).
 
 # Comments
 
