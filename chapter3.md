@@ -6,7 +6,7 @@ A module is a way to store variables and functions/subroutines that are availabl
 
 ## How to write a module
 
-To store variables that must be accessible everywhere in a program, you need to create a file called \(for example\) `mymodule.f90` which would contains
+To store variables that must be accessible everywhere in a program, you need to create a file called \(for example\) `mymodule.f90` which contains the following
 
 ```fortran
 module mymodule

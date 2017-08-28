@@ -10,9 +10,9 @@ On easy way to parallelize is to use OpenMP. On Unix machines OpenMP is included
 
 All the commands that refer to OpenMP must be preceeded by `!$`.
 
-To use OpenMP you must first load the module in the files that will use OpenMP command. For example
+To use OpenMP you must first load the module in the files that will use OpenMP commands. For example
 
-```
+```fortran
 program myprogram
   !$ use omp_lib
   implicit none
@@ -31,7 +31,7 @@ gfortran -fopenmp -o myexec myprogram.f90
 
 The most commonly use of OpenMP is in do-loop. Imagine you have a the following simple code:
 
-```
+```fortran
 program myprogram
   implicit none
   real :: a(100)
@@ -41,9 +41,9 @@ program myprogram
 end program
 ```
 
-In the above code, the loop that computes something at each iteration, independently of previous iterations. This is the perfect environment to use parallilization with OpenMP. OpenMP will execute the computation of different iterations on different cores at the same time. Without OpenMP each iteration would have to be finished before the next one starts, i.e. it will all be computed sequenially. To compute using OpenMP, you can write:
+In the above code, the loop computes something at each iteration, independently of previous iterations. This is the perfect environment to use parallilization with OpenMP. OpenMP will execute the computation of different iterations on different cores at the same time. Without OpenMP each iteration would have to be finished before the next one starts, i.e. it will all be computed sequenially. To compute using OpenMP, you can write:
 
-```
+```fortran
 program myprogram
   !$ use omp_lib
   implicit none
@@ -62,7 +62,7 @@ You can know the number of threads by using the OpenMP subroutine `omp_get_num_t
 
 Note that to break lines in an OpenMP instruction you need `,&` at the end of the line and `!$openmp&` at the beginning of the next line.
 
-## Other loops with OpenMP 
+## Other loops with OpenMP
 
 ## Private / Shared Variables with OpenMP
 
@@ -74,7 +74,7 @@ Parameters cannot be declared as shared or private because their value cannot ch
 
 An example of code using private and shared indicators \[code to be checked by running it\]:
 
-> ```
+> ```fortran
 > program myprogram
 >   !$ use omp_lib
 >   implicit none
@@ -82,10 +82,10 @@ An example of code using private and shared indicators \[code to be checked by r
 >   real :: sharedvar = 2.0
 >   real :: privatevar
 >   real :: a(100)
->   !$omp parallel default(none) shared(sharedvar) private(privatevar) do
+>   !$omp parallel default(none) shared(sharedvar, a) private(privatevar) do
 >   do i=1,100
 >     $! privatevar = omp_get_thread_num()
->     a(i) = 2*i
+>     a(i) = sharedvar*pi*i
 >   end do
 >   !$omp end parallel do
 > end program
@@ -97,8 +97,8 @@ The `default(none)` indicates that all variables must be specified as either `sh
 
 Module variables can only be shared, unless you use a special trick. The trick is that you need to declare them as `threadprivate` in the module where they are defined. Note that you need to have the line `!$ use omp_lib` at the beginning of the module.
 
-```
-mymodule
+```fortran
+module mymodule
   !$ use omp_lib
   implicit none
   real :: a

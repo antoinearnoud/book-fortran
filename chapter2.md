@@ -9,7 +9,7 @@ FORTRAN is a bit different from, say, Matalab. It is a low level language. Concr
 
 ### 1. Writing the code
 
-To write the code use any text editor. It might be more convenient to use an editor specialized in FORTRAN such as _Atom _\(from _Github\)_ or _SublimeText_. In these editors the syntax is colored according to FORTRAN conventions. To use _Atom, \_one needs to download \_Atom_ from _Github_ website and to add the _Fortran syntax_ package.
+To write the code use any text editor. It might be more convenient to use an editor specialized in FORTRAN such as _Atom _\(from _Github\)_ or _SublimeText_. In these editors the syntax is colored according to FORTRAN conventions.
 
 To start writing code, create a new a file and call it`myprogram.f90`. That's your _main_ file. It has the following structure.
 
@@ -40,10 +40,10 @@ gfortran myprogram.f90
 This will produce a new file \(an executable\). By default, the new file is called `a`. You can change this to give the file a more convenient name, for example `myprog_exe`. To do so, use the option `-o`:
 
 ```bash
-gfortran -o myprogr_exe myprogramf90
+gfortran -o myprogr_exe myprogram.f90
 ```
 
-This tells the compiler to name the output file `myprog_exe`. It uses the _flag_ \(or option\) `-o` followed by the argument to this flag. You can use any name you want for the executable file.
+This tells the compiler to name the output file `myprog_exe`. It uses the _flag_ \(or option\) `-o` followed by the argument to this flag.
 
 To compile a program with modules or a library, see next chapters.
 
@@ -55,7 +55,7 @@ It is only when executing the file that the code will be executed and the comput
 ./a
 ```
 
-Or, if you used the `-o` flag:
+Or, if you used the `-o` flag with a different output name:
 
 ```
 ./myprog_exe
@@ -63,7 +63,7 @@ Or, if you used the `-o` flag:
 
 ## Declaring variables
 
-You need to declare all the variables you will use. For example:
+You need to declare all the variables you will use. ere is how
 
 ```fortran
 program myprogram
@@ -73,7 +73,7 @@ program myprogram
 end program
 ```
 
-The key words `implicit none` means that you want all the variables used to be first declared. Hence, if in the `the code here` part you use other letters, such as `d`, the code will return an error when you try to compile it. It is possible no to use `implicit none` which allows you to use variables not declared. However, you should _never_ do this \(mostly because each letter of the alphabet has a default type if not declared\). Note that here we declared the variables as `real`. There are other types, and the most usual types are
+The key words `implicit none` means that you want that all the variables used in the code have to be first declared. Hence, if in the `the code here` part you use other letters, such as `d`, the code will return an error when you try to compile it. It is possible no to use `implicit none` which allows you to use variables not declared. However, you should _never_ do this \(mostly because each letter of the alphabet has a default type if not declared\). Note that here we declared the variables as `real`. There are other types, and the most usual types are
 
 ```fortran
 real
@@ -83,7 +83,7 @@ character
 
 The type `character` is for strings.
 
-For number, you can specify the number of bytes to use \(hence the precision\) by using the `kind`specifier.
+You can specify the number of bytes to be used for your variables \(hence the precision\) by using the `kind`specifier.
 
 ```fortran
 integer(kind=2) :: shortinteger
@@ -93,7 +93,7 @@ integer(kind=16) :: verylonginteger
 
 ## Functions and Subroutines
 
-In FORTRAN you can use two types of blocs of code which you provide with input: the function and the subroutine. Consider these two as quite similar. Let's see the differences between them.
+In FORTRAN you can use two types of blocs of code which you provide with input: the function and the subroutine. They both work the same way but with slight differences.
 
 ### Functions
 
@@ -107,7 +107,7 @@ function myfunction(a,b,c)
 end function
 ```
 
-As you can see, one needs to declare all the variables that are passed as arguments \(here `a`, `b` and `c`\) as well as the output variable which must _have the same name as the function_. For example, the function could do
+As you can see, one needs to declare all the variables that are passed as arguments \(here `a`, `b` and `c`\) as well as the output variable which must _have the same name as the function_. For example, the function could be
 
 ```fortran
 function myfunction(a,b,c)
@@ -160,9 +160,7 @@ program myprogram
 end program
 ```
 
-In this example, `easy_sum` will be equal to `1000 + x1 + x2 + x3`.
-
-Note also that it seems that the variable `myfunction` cannot appear in the right-end side of any expression inside the function \[to be verified\].
+In this example, `easy_sum` will be equal to `1000 + x1 + x2 + x3,`, i.e. `1+2+3+1000 = 1006`.
 
 ### Subroutines
 
@@ -227,7 +225,7 @@ pure function myfunction(a,b,c)
 end function
 ```
 
-This will not work \(to check\) because `a` is an argument of a pure function, but the function tries to modify it. To have something working one needs to change the `intent(inout) :: a` into `intent(in) :: a` as well as to delete `a = a + b + c` \(or create an intermediary variable `intvar = a + b + c` , and not forgetting to declare it with: `real :: intvar`\).
+This will not work \(to check\) because `a` is an argument of a pure function, but the function tries to modify it \(the `inout `classification is enough to provoke an error as a pure function cannot modify an input argument\). To have something working one needs to change the `intent(inout) :: a` into `intent(in) :: a` as well as to delete `a = a + b + c` \(or create an intermediary variable `intvar = a + b + c` , and not forgetting to declare it with: `real :: intvar`\).
 
 # Types and arrays, parameters
 
@@ -267,7 +265,7 @@ real, save :: a
 real :: b = 5
 ```
 
-That is why it is dangerous to assign a value at the same time on declares a variable: at each iterative call, the starting value of the variable is the last one assigned to it, not the one assigned in the declaration \(here b = 5\). Overall, it is preferable to use modules instead of  `save`  \(see next chapter\).
+That is why it is dangerous to assign a value at the same time on edeclares a variable: at each iterative call, the starting value of the variable is the last one assigned to it, not the one assigned in the declaration \(here b = 5\). Overall, it is preferable to use modules instead of  `save`  \(see next chapter\).
 
 # Comments
 
@@ -275,6 +273,5 @@ To write a comment in FORTRAN, use `!` at the beginning of the comment.
 
 # Break lines
 
-To break a line in FORTRAN, use `&` at the end of the line you want to break, and start the next line right below.  
-Isnt'it `, &`?
+To break a line in FORTRAN, use `&` at the end of the line you want to break, and start the next line right below.
 
