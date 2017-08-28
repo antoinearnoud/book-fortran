@@ -34,5 +34,5 @@ One can add some option \(before ANY other text\):
 
 `# SBATCH --output=job_output.txt`
 
-Time is in HH:MM:SS
+Time is in HH:MM:SS.
 
