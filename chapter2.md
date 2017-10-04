@@ -63,7 +63,7 @@ Or, if you used the `-o` flag with a different output name:
 
 ## Declaring variables
 
-You need to declare all the variables you will use. ere is how
+You need to declare all the variables you will use. Here is how
 
 ```fortran
 program myprogram
@@ -225,7 +225,7 @@ pure function myfunction(a,b,c)
 end function
 ```
 
-This will not work \(to check\) because `a` is an argument of a pure function, but the function tries to modify it \(the `inout `classification is enough to provoke an error as a pure function cannot modify an input argument\). To have something working one needs to change the `intent(inout) :: a` into `intent(in) :: a` as well as to delete `a = a + b + c` \(or create an intermediary variable `intvar = a + b + c` , and not forgetting to declare it with: `real :: intvar`\).
+This will not work \(to check\) because `a` is an argument of a pure function, but the function tries to modify it \(the `inout`classification is enough to provoke an error as a pure function cannot modify an input argument\). To have something working one needs to change the `intent(inout) :: a` into `intent(in) :: a` as well as to delete `a = a + b + c` \(or create an intermediary variable `intvar = a + b + c` , and not forgetting to declare it with: `real :: intvar`\).
 
 # Types and arrays, parameters
 

@@ -16,5 +16,5 @@ To change the content of a file use `sed`:
 sed -i {line_number}s/*/text_to_put_on_the_line name_of_file
 ```
 
-`sed` stands for stream edutor.  `-i` means it will save the file with the modifications.
+`sed` stands for stream editor.  `-i` means it will save the file with the modifications.
 
