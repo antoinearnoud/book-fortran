@@ -91,6 +91,34 @@ integer(kind=4) :: longinteger
 integer(kind=16) :: verylonginteger
 ```
 
+## Types and arrays, parameters
+
+To declare an array \(vector\) `a` and a matrix `b` use
+
+```fortran
+real :: a(5)
+real :: b(5,4)
+```
+
+or, equivalently
+
+```fortran
+real, dimension(5) :: a
+real, dimension(5,4) :: b
+```
+
+The first way is convenient to declare arrays of different dimensions on the same line
+
+```fortran
+real :: a(5), b(5,4)
+```
+
+You can also use the keyword `parameter`. This means that the variable _cannot_ change value. You must therefore initialize it at the same time you declare it.
+
+```fortran
+real, parameter :: d = 5
+```
+
 ## Functions and Subroutines
 
 In FORTRAN you can use two types of blocs of code which you provide with input: the function and the subroutine. They both work the same way but with slight differences.
@@ -227,35 +255,7 @@ end function
 
 This will not work \(to check\) because `a` is an argument of a pure function, but the function tries to modify it \(the `inout`classification is enough to provoke an error as a pure function cannot modify an input argument\). To have something working one needs to change the `intent(inout) :: a` into `intent(in) :: a` as well as to delete `a = a + b + c` \(or create an intermediary variable `intvar = a + b + c` , and not forgetting to declare it with: `real :: intvar`\).
 
-# Types and arrays, parameters
-
-To declare an array \(vector\) `a` and a matrix `b` use
-
-```fortran
-real :: a(5)
-real :: b(5,4)
-```
-
-or, equivalently
-
-```fortran
-real, dimension(5) :: a
-real, dimension(5,4) :: b
-```
-
-The first way is convenient to declare arrays of different dimensions on the same line
-
-```fortran
-real :: a(5), b(5,4)
-```
-
-You can also use the keyword `parameter`. This means that the variable _cannot_ change value. You must therefore initialize it at the same time you declare it.
-
-```fortran
-real, parameter :: d = 5
-```
-
-# `Save` keyword, initialization-declaration
+## `Save` keyword, initialization-declaration
 
 The keyword `save` is used to make a variable global \(see next chapter\). More specifically,  `save` is a specification statement which can be used to ensure that variables and arrays used within a procedure \(local variable\) preserve their values between successive calls to the procedure.  
 Another way to make a variable global is to assigns it a value at the same time as the declaration.
@@ -267,11 +267,11 @@ real :: b = 5
 
 That is why it is dangerous to assign a value at the same time on edeclares a variable: at each iterative call, the starting value of the variable is the last one assigned to it, not the one assigned in the declaration \(here b = 5\). Overall, it is preferable to use modules instead of  `save`  \(see next chapter\).
 
-# Comments
+## Comments
 
 To write a comment in FORTRAN, use `!` at the beginning of the comment.
 
-# Break lines
+## Break lines
 
 To break a line in FORTRAN, use `&` at the end of the line you want to break, and start the next line right below.
 
