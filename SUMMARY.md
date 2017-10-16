@@ -11,4 +11,5 @@
 * [Conclusion](chapter5.md)
 * [Appendix: Bash](chapter10.md)
 * [Appendix: Clusters](chapter7.md)
+* [Makefiles](makefiles.md)
 

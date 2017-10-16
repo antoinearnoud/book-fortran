@@ -26,13 +26,12 @@ The head of the script file \(sh file\) must be
 
 One can add some option \(before ANY other text\):
 
-`#SBATCH --job-name=myjob`
-
-`#SBATCH --partition=nameofthepartition`
-
-`#SBATCH --time=80:00:00`
-
-`# SBATCH --output=job_output.txt`
+```bash
+#SBATCH --job-name=myjob
+#SBATCH --partition=nameofthepartition
+#SBATCH --time=80:00:00
+# SBATCH --output=job_output.txt
+```
 
 Time is in HH:MM:SS.
 
