@@ -23,6 +23,8 @@ step
 
 To go faster one can use `step 50` which will automatically apply steep 50 times \(50 can be changed to any integer\).
 
+Instead of typing `break main` \(which puts break at each step of the program\), you can instead create a break point anywhere in the code \(source file\) by using `break sourcefile.f90:lineofbreak`. After creating all the breaks needed, just use `run`.
+
 Then, at any time you can use the
 
 ```
