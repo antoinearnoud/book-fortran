@@ -64,7 +64,28 @@ Note that to break lines in an OpenMP instruction you need `,&` at the end of th
 
 ## Other loops with OpenMP
 
-Important instructions in OpenMP are `single `\(where only one instance executes the code, for example to print something\), `critical `\(where only one instance at a time executes the code\) and `barrier `\(where all instances must meet before continuing the code\).
+Important instructions in OpenMP are `single`\(where only one instance executes the code, for example to print something\), `critical`\(where only one instance at a time executes the code\) and `barrier`\(where all instances must meet before continuing the code\).
+
+```fortran
+program myprogram
+!$ use omp_lib
+implicit none
+...
+...
+!$omp single
+ print*, "this will only be printed one time"
+!$omp end single
+
+!$omp critical (nameofcriticalsection)
+ print*, "this is gonna print one instance at a time"
+!$omp end critical (nameofcriticalsection)
+
+!$omp barrier
+
+end program
+```
+
+
 
 ## Private / Shared Variables with OpenMP
 
