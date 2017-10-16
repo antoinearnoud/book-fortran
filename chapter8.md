@@ -21,13 +21,19 @@ and then follow the execution of the program step by step by using
 step
 ```
 
+To go faster one can use `step 50` which will automatically apply steep 50 times \(50 can be changed to any integer\).
+
 Then, at any time you can use the
 
 ```
 print name_of_variable
 ```
 
-to see what is the value stored in a given variable. To quit gdb type
+to see what is the value stored in a given variable.
+
+`list`is used to see a few lines of code around the step that has just ran. Similarly, `where`tells you where you are in the program.
+
+To quit gdb type
 
 ```
 quit
