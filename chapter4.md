@@ -62,7 +62,7 @@ You can know the number of threads by using the OpenMP subroutine `omp_get_num_t
 
 Note that to break lines in an OpenMP instruction you need `,&` at the end of the line and `!$openmp&` at the beginning of the next line.
 
-## Other loops with OpenMP
+## Other instructions with OpenMP
 
 Important instructions in OpenMP are `single`\(where only one instance executes the code, for example to print something\), `critical`\(where only one instance at a time executes the code\) and `barrier`\(where all instances must meet before continuing the code\).
 
@@ -84,8 +84,6 @@ implicit none
 
 end program
 ```
-
-
 
 ## Private / Shared Variables with OpenMP
 
