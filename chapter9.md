@@ -13,5 +13,11 @@ Besides the flag to optimize code, you should also make sure of the following:
 1. loop over your matrices using outside index first
 2. avoid using a module if it is used many times. Use inline code instead.
 
+## Profiling: How to improve code
+
+Use a profiler to see where the code is spending most of the time.
+
+## 
+
 
 
