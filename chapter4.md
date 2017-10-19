@@ -2,13 +2,13 @@
 
 ## What is paralelization ?
 
-Parallelizing a code in FORTRAN can allow to gain much time. It is not too difficult but one needs to be careful.
+Parallelizing a code in FORTRAN can allow to gain much time. It is not too difficult but one needs to be careful. Parallelization means that the execution of the code will be cut in pieces and sent to different cpus \(or cores\), such that they can all work at the same time on the code, which will improve the speed.
 
 ## Using OpenMP
 
 On easy way to parallelize is to use OpenMP. On Unix machines OpenMP is included \(if not go here\).
 
-All the commands that refer to OpenMP must be preceeded by `!$`.
+All the commands that refer to OpenMP must be preceeded by `!$ ` or `!$OMP`. The first so-called sentinel is used when the following code is normal but must only be executed when compiling the program in parallel \(for example` !$ use omp_lib` which indicates that one needs the OpenMP library, see example below\). The second sentinel is used when the code is an OpenMP directive \(see below\).
 
 To use OpenMP you must first load the module in the files that will use OpenMP commands. For example
 
@@ -23,8 +23,14 @@ end program
 
 When compiling with gfortran \(on Unix machines\), you will need to use a flag `-fopenmp`:
 
-```
+```bash
 gfortran -fopenmp -o myexec myprogram.f90
+```
+
+With the Fortran compiler, the flag is simply `-openmp` :
+
+```bash
+ifort -openmp -o myexec myprogram.f90
 ```
 
 ## Do-loop with OpenMP
@@ -58,13 +64,13 @@ end program
 
 This way, OpenMP will automatically choose the number of cores at disposal and send to each of them approximately the same number of tasks. Here by default the variable `a` is shared \(see below\).
 
-You can know the number of threads by using the OpenMP subroutine `omp_get_num_threads()` \(returns an integer\) before entering the parallel region \(do-loop\). You can get the thread number by using `omp_get_thread_num()` inside the parallel region \(do-loop\).
+You can know the number of threads \(or cores\) by using the OpenMP subroutine `omp_get_num_threads()` \(returns an integer\) before entering the parallel region \(do-loop\). You can get the thread number by using `omp_get_thread_num()` inside the parallel region \(do-loop\).
 
 Note that to break lines in an OpenMP instruction you need `,&` at the end of the line and `!$openmp&` at the beginning of the next line.
 
 ## Other instructions with OpenMP
 
-Important instructions in OpenMP are `single`\(where only one instance executes the code, for example to print something\), `critical`\(where only one instance at a time executes the code\) and `barrier`\(where all instances must meet before continuing the code\).
+Important instructions in OpenMP are `single`\(where only one instance executes the code, for example to print something\), `critical`\(where only one instance at a time executes the code\) and `barrier`\(where all instances must meet before continuing the code\). It is important to give a specific name to each `critical `region.
 
 ```fortran
 program myprogram
@@ -87,7 +93,7 @@ end program
 
 ## Private / Shared Variables with OpenMP
 
-Note that each core \(thread\) will write its own value on the variables. It is therefore important to indicate if the variable is to be shared by each thread or not. If shared, each thread reads the value that has been potentially given by another thread. If private, each variable is duplicated in each thread at the beginning \(with no value assigned to it!\) and lives its own life. At the end of the parallel block, the variable has no value anymore.
+Note that each core \(thread\) will write its own value on the variables. It is therefore important to indicate if the variable is to be shared by the threads or not. If shared, each thread reads the value that has been potentially given by another thread. If private, each variable is duplicated in each thread at the beginning \(with no value assigned to it!\) and lives its own life. At the end of the parallel block, the variable has no value anymore.
 
 The dummy integer of the loop is necessarily private \(no need to indicate it is private\).
 
