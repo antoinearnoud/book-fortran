@@ -8,9 +8,10 @@
 * [Optimization](chapter9.md)
 * [Debugging](chapter8.md)
 * [Parallelization with OpenMP](chapter4.md)
+* Parallelization with Bash
 * [Conclusion](chapter5.md)
 * [Appendix: Bash](chapter10.md)
 * [Appendix: Clusters](chapter7.md)
 * [Makefiles](makefiles.md)
-* [Read files & write on files](read-files-and-write-on-files.md)
+* Parallelization with Bash
 
