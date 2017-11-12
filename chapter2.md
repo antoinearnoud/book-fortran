@@ -37,7 +37,7 @@ To compile the code one needs a compiler \(see Chapter 1\). On Unix machine, ope
 gfortran myprogram.f90
 ```
 
-This will produce a new file \(an executable\). By default, the new file is called `a`. You can change this to give the file a more convenient name, for example `myprog_exe`. To do so, use the option `-o`:
+This will produce a new file \(an executable\). By default, the new file is called `a`. You can change this to give the file a more convenient name, for example `myprog_exe`. To do so, use the option `-o(`\(for output\):
 
 ```bash
 gfortran -o myprogr_exe myprogram.f90
@@ -265,13 +265,36 @@ real, save :: a
 real :: b = 5
 ```
 
-That is why it is dangerous to assign a value at the same time on edeclares a variable: at each iterative call, the starting value of the variable is the last one assigned to it, not the one assigned in the declaration \(here b = 5\). Overall, it is preferable to use modules instead of  `save`  \(see next chapter\).
+That is why it is dangerous to assign a value at the same time one declares a variable: at each iterative call, the starting value of the variable is the last one assigned to it, not the one assigned in the declaration \(here `b = 5`\). Overall, it is preferable to use modules instead of  `save`  \(see next chapter\).
 
 ## Comments
 
 To write a comment in FORTRAN, use `!` at the beginning of the comment.
 
+```fortran
+! this is a line with only comments
+real, save :: a ! this is a comment
+real :: b
+```
+
 ## Break lines
 
 To break a line in FORTRAN, use `&` at the end of the line you want to break, and start the next line right below.
+
+```fortran
+program main
+implicit none
+real :: a
+real :: b
+
+a = 5.0
+b = 2.3 + 3.0 &
+    + b
+
+end program
+
+
+```
+
+
 
