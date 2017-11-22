@@ -1,3 +1,5 @@
+# 
+
 # Simple code in FORTRAN
 
 FORTRAN is a bit different from, say, Matalab. It is a low level language. Concretely this means that the steps needed to run some code are distinct:  
@@ -31,13 +33,13 @@ c = a + b
 
 ### 2. Compiling the code
 
-To compile the code one needs a compiler \(see Chapter 1\). On Unix machine, open the terminal and type
+To compile the code one needs a compiler \(see Chapter 1\). On Unix machine, open the terminal, navigate to the directory where your fortran file is located \(using `cd`command, see Appendix - Bash\) and type
 
 ```bash
 gfortran myprogram.f90
 ```
 
-This will produce a new file \(an executable\). By default, the new file is called `a`. You can change this to give the file a more convenient name, for example `myprog_exe`. To do so, use the option `-o(`\(for output\):
+This will produce a new file \(an executable\). By default, the new file is called `a`. You can change this to give the file a more convenient name, for example `myprog_exe`. To do so, use the option `-o(`\(small letter o, for output\):
 
 ```bash
 gfortran -o myprogr_exe myprogram.f90
@@ -73,15 +75,20 @@ program myprogram
 end program
 ```
 
-The key words `implicit none` means that you want that all the variables used in the code have to be first declared. Hence, if in the `the code here` part you use other letters, such as `d`, the code will return an error when you try to compile it. It is possible no to use `implicit none` which allows you to use variables not declared. However, you should _never_ do this \(mostly because each letter of the alphabet has a default type if not declared\). Note that here we declared the variables as `real`. There are other types, and the most usual types are
+The key words `implicit none` means that you want that all the variables used in the code have to be first declared. Hence, if in the `the code here` part you use other letters, such as `d`, the code will return an error when you try to compile it. It is possible no to use `implicit none` which allows you to use variables not declared. However, you should _never_ do this \(mostly because each letter of the alphabet has a default type if not declared\). The double colon after `real` is  optional. Note that here we declared the variables as`real`. There are other types, and the most usual types are
 
 ```fortran
 real
 integer
 character
+logical
 ```
 
-The type `character` is for strings.
+The type `character` is for strings. To declare a string you need to use single or double quotes and write
+
+```fortran
+string :: stringvar="text in the variable"
+```
 
 You can specify the number of bytes to be used for your variables \(hence the precision\) by using the `kind`specifier.
 
@@ -118,6 +125,12 @@ You can also use the keyword `parameter`. This means that the variable _cannot_ 
 ```fortran
 real, parameter :: d = 5
 ```
+
+## Arithmetic operations
+
+The usual operations are: addition `+`, subtracction `-`, division `/` , multiplication `*` , exponention `**` .
+
+A very common error is to use integer instead of real when doing arithmetic operations. Operations on integers always return an integer. For example `9/4`  will return 2. 
 
 ## Functions and Subroutines
 
