@@ -130,7 +130,7 @@ real, parameter :: d = 5
 
 The usual operations are: addition `+`, subtracction `-`, division `/` , multiplication `*` , exponention `**` .
 
-A very common error is to use integer instead of real when doing arithmetic operations. Operations on integers always return an integer. For example `9/4`  will return 2. 
+A very common error is to use integer instead of real when doing arithmetic operations. Operations on integers always return an integer. For example `9/4`  will return 2.
 
 ## Functions and Subroutines
 
@@ -302,9 +302,9 @@ real :: b
 
 a = 5.0
 b = 2.3 + 3.0 &
-    + b
+    + a
 end program
 ```
 
-
+It is useful to break lines because each line has a maximum length \(which depends on the compiler\). It is wise to limit the length to no more than 300 characters.
 
