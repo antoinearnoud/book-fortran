@@ -1,4 +1,4 @@
-# Eigth Chapter: Debugging Errors
+# Debugging Errors
 
 ## Simple Thoughts
 
