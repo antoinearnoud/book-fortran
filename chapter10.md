@@ -1,4 +1,4 @@
-# Chapter Tenth: Appendix - Bash commands
+# Appendix - Bash commands
 
 Bash is a scripting langauge, used on Unix machines. You might need the following commands.
 
@@ -22,7 +22,7 @@ To change the content of a file use `sed`:
 sed -i '143s/*/text_to_put_on_the_line' name_of_file
 ```
 
-`sed` stands for stream editor.  `-i` means it will save the file with the modifications. `-s` is for substitution. This will act on line 143 only.  
+`sed` stands for stream editor.  `-i` means it will save the file with the modifications. `-s` is for substitution. This will act on line 143 only.
 
 You can also substitute a word \(snetence\) with another sentence
 
