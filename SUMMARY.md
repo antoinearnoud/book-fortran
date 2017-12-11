@@ -1,6 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
+* [Table of Content](SUMMARY.md)
 * [Installation](chapter1.md)
 * [Getting started: simple code](chapter2.md)
 * [Modules](chapter3.md)
@@ -11,5 +12,4 @@
 * [Conclusion](chapter5.md)
 * [Appendix: Bash](chapter10.md)
 * [Appendix: Clusters](chapter7.md)
-* [Makefiles](makefiles.md)
 
