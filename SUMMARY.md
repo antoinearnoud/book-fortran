@@ -5,6 +5,7 @@
 * [Installation](chapter1.md)
 * [Getting started: simple code](chapter2.md)
 * [Modules](chapter3.md)
+* [IO commands](read-files-and-write-on-files.md)
 * [Libraries](chapter6.md)
 * [Optimization](chapter9.md)
 * [Debugging](chapter8.md)
