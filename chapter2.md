@@ -1,5 +1,3 @@
-# 
-
 # Simple code in FORTRAN
 
 FORTRAN is a bit different from, say, Matalab. It is a low level language. Concretely this means that the steps needed to run some code are distinct:  

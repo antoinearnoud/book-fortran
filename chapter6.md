@@ -1,4 +1,4 @@
-# Sixth Chapter: Using Libraries
+# Using Libraries
 
 To use library you need to have a library available on your computer. That's complicated. Most of the time you don't need libraries. One library you can use to optimize \(i.e. find the global optimum of\) functions is NLopt.
 
