@@ -48,5 +48,9 @@ The '2~2' means start at line two and keep every line by step of 2. TO keep line
 sed -n -e '1,10p' -e '21,30p' textfile.txt > textfile2.txt
 ```
 
+## commands
+
+Adding the symbol `&` at the end of a line will have the job run in the background, so the script will continue to the next line. It is a convenient way to launch several jobs on a cluster, for example.` `
+
 
 
