@@ -2,7 +2,9 @@
 
 To use Yale cluster \(Grace\) for compiling with Fortran you don't need to load anything if you are using gfortran compiler. If you want to use Intel compiler you need to load it with
 
-> module load Langs/Intel/...
+```bash
+module load Langs/Intel/...
+```
 
 where `...` has to be replaced by the version of intel to use.
 
@@ -30,8 +32,8 @@ One can add some option \(before ANY other text\):
 #SBATCH --job-name=myjob
 #SBATCH --partition=nameofthepartition
 #SBATCH --time=80:00:00
-# SBATCH --output=job_output.txt
+#SBATCH --output=job_output.txt
 ```
 
-Time is in HH:MM:SS.
+Time is in HH:MM:SS. To add days: DD-HH:MM:SS.
 
