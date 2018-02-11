@@ -8,9 +8,9 @@ A Makefile is a file that automatically compiles your program. When there are ma
 # Start of the Makefile
 
 # Defining variables
-FC = ifort #gfortran
-FFLAGS = -openmp #-fopenmp
-LFLAGS = 
+FC = ifort #gfortran # Fortran Compiler
+FFLAGS = -openmp #-fopenmp # Fortran Flags
+LFLAGS =  # Library Flags
 OBJECTS = main.o params.o nrtype.o nrutil.o grid.o preference.o demographics.o labor.o gridtax.o evaluate.o output.o tauchenhussey.o newton.o euler_eqn.o household.o resid.o taxfn.o distribution.o zbrent.o
 MODULES = nrtype.mod nrutil.mod params.mod
 .PHONY: clean
