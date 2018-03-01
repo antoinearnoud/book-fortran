@@ -1,4 +1,4 @@
-# Optimization 
+# Optimization
 
 ## Flags
 
@@ -20,8 +20,8 @@ Besides the flag to optimize code, you should also make sure of the following:
     end do
    end do
    ```
-2. avoid using a module if it is used many times. Use inline code instead. There is a overhead cost at calling a module.
-
+2. avoid using a module if it is used many times. Use inline code instead. There is a overhead cost at calling a module many times.
+3. 
 ## Profiling: How to improve code
 
 Use a profiler to see where the code is spending most of the time.
