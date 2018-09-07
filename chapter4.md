@@ -8,7 +8,7 @@ Parallelizing a code in FORTRAN can allow to gain much time. It is not too diffi
 
 On easy way to parallelize is to use OpenMP. On Unix machines OpenMP is included \(if not go here\).
 
-All the commands that refer to OpenMP must be preceeded by `!$ ` or `!$OMP`. The first so-called sentinel is used when the following code is normal but must only be executed when compiling the program in parallel \(for example` !$ use omp_lib` which indicates that one needs the OpenMP library, see example below\). The second sentinel is used when the code is an OpenMP directive \(see below\).
+All the commands that refer to OpenMP must be preceeded by `!$` or `!$OMP`. The first so-called sentinel is used when the following code is normal but must only be executed when compiling the program in parallel \(for example`!$ use omp_lib` which indicates that one needs the OpenMP library, see example below\). The second sentinel is used when the code is an OpenMP directive \(see below\).
 
 To use OpenMP you must first load the module in the files that will use OpenMP commands. For example
 
@@ -68,9 +68,17 @@ You can know the number of threads \(or cores\) by using the OpenMP subroutine `
 
 Note that to break lines in an OpenMP instruction you need `,&` at the end of the line and `!$openmp&` at the beginning of the next line.
 
+A useful feature of parallel loops is the collaps\(\) keyword. It allows to parallelize several nested loops. For example, for two nested loops:
+
+```fortran
+!$omp parallel do collapse(2)
+```
+
+
+
 ## Other instructions with OpenMP
 
-Important instructions in OpenMP are `single`\(where only one instance executes the code, for example to print something\), `critical`\(where only one instance at a time executes the code\) and `barrier`\(where all instances must meet before continuing the code\). It is important to give a specific name to each `critical `region.
+Important instructions in OpenMP are `single`\(where only one instance executes the code, for example to print something\), `critical`\(where only one instance at a time executes the code\) and `barrier`\(where all instances must meet before continuing the code\). It is important to give a specific name to each `critical`region.
 
 ```fortran
 program myprogram
