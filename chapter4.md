@@ -74,7 +74,11 @@ A useful feature of parallel loops is the collaps\(\) keyword. It allows to para
 !$omp parallel do collapse(2)
 ```
 
+Another feature is the reduction. It allows openmp to automatically do a certain number of operations \(addition, max, min...\) on one variable, at the end of the parallel section. For example
 
+```
+!$omp parallel do reduction(+:sumvariable)
+```
 
 ## Other instructions with OpenMP
 
