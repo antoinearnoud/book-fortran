@@ -309,3 +309,12 @@ end program
 ```
 
 It is useful to break lines because each line has a maximum length (which depends on the compiler). It is wise to limit the length to no more than 300 characters.
+
+STOP
+
+The STOP statement terminates the program. One can pass a message as an argument to STOP (either an integer or a string). The message will be displayed when STOP is reached and the program terminates.
+
+```fortran
+stop "Error"
+stop 1
+```
