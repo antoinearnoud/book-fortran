@@ -1,6 +1,6 @@
-# Table of Content
+# Summary
 
-* [Introduction](./)
+* [Introduction](README.md)
 * [Table of Content](SUMMARY.md)
 * [Installation](chapter1.md)
 * [Getting started: simple code](chapter2.md)
@@ -16,3 +16,4 @@
 * [Appendix: Bash](chapter10.md)
 * [Appendix: Clusters](chapter7.md)
 * Recursive functions
+

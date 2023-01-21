@@ -1,18 +1,14 @@
-# IO commands
+# Read and write on files
 
 To read or write on a file in Fortran one must first _open_ it. To open a file name mytextfile.txt one can write
 
-```fortran
-open(unit=10, file="mytextfile.txt", status = new/old, action = read/write)
-```
+`open(unit=10, file="mytextfile.txt", status = new/old, action = read/write)`
 
-Only the first two arguments (unit and file) are mandatory. You can choose any integer for `unit` (it can also be a variable integer), as long as it is not used by another file (for example mytextfile\_2.txt).
+Only the first two argument \(unit and file\) are mandatory. You can choose any integer for unit \(it can also be a variable integer\), as long as it is not used by another file \(for example mytextfile\_2.txt\).
 
 After working on the file, you need to close it with the command
 
-```fortran
-close(10)
-```
+`close(10)`
 
 ## Reading
 
@@ -26,10 +22,17 @@ end do
 
 ## Writing
 
-To write in a file, if you have a matrix with N lines with an identifier and a result (scalar) you can write
+To write in a file, if you have a matrix with N lines with an identifier and a result \(scalar\) you can write
 
 ```fortran
 do j=1,N
   write(10,*) (matresult(j,i),i=1,2)
 end do
 ```
+
+
+
+
+
+
+

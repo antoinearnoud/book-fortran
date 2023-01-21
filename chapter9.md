@@ -12,16 +12,20 @@ This let the compiler choose which lelvel of optimization it seems adequate. One
 
 Besides the flag to optimize code, you should also make sure of the following:
 
-1.  loop over your matrices using outside index first, i.e.
-
-    ```
-    do j=1,1000
-     do i=1,5
-      a(i,j) = (i+j)/2.0
-     end do
+1. loop over your matrices using outside index first, i.e.
+   ```fortran
+   do j=1,1000
+    do i=1,5
+     a(i,j) = (i+j)/2.0
     end do
-    ```
+   end do
+   ```
 2. avoid using a module if it is used many times. Use inline code instead. There is an overhead cost at calling a module many times.
-3. **Profiling: How to improve code**
+3. ## Profiling: How to improve code
 
-Use a profiler to see where the code is spending most of the time. However, never use the O3 optimization flag when profiling (it rearranges the code very agressively).
+Use a profiler to see where the code is spending most of the time. However, never use the O3 optimization flag when profiling \(it rearranges the code very agressively\).
+
+## 
+
+
+

@@ -158,6 +158,17 @@ function myfunction(a,b,c)
 end function
 ```
 
+One can actually choose a different name for the output (rather than the same name as the function) but one must then use the following syntax
+
+```fortran
+function myfunction(a,b,c) res(var)
+   implicit none
+   real:: a,b,c
+   real:: var
+   var = a + b + c
+end function
+```
+
 To call this function into the main program you would write altogether
 
 ```fortran
