@@ -1,4 +1,4 @@
-# Full FORTRAN programming using modules
+# Modules
 
 ## What is a module?
 
@@ -6,7 +6,7 @@ A module is a way to store variables and functions/subroutines that are availabl
 
 ## How to write a module
 
-To store variables that must be accessible everywhere in a program, you need to create a file called \(for example\) `mymodule.f90` which contains the following
+To store variables that must be accessible everywhere in a program, you need to create a file called (for example) `mymodule.f90` which contains the following
 
 ```fortran
 module mymodule
@@ -54,3 +54,4 @@ end program
 
 This can be done to make sure that other parameters contained in the module are not inadvertently modified in the program.
 
+Note that a module cannot contain executable statements outside of procedures.
