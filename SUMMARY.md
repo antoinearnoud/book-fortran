@@ -1,4 +1,4 @@
-# Summary
+# Table of contents
 
 * [Introduction](README.md)
 * [Table of Content](SUMMARY.md)
@@ -11,9 +11,8 @@
 * [Libraries](chapter6.md)
 * [Optimization](chapter9.md)
 * [Debugging](chapter8.md)
+* [Common Errors](common-errors.md)
 * [Parallelization with OpenMP](chapter4.md)
 * [Conclusion](chapter5.md)
 * [Appendix: Bash](chapter10.md)
 * [Appendix: Clusters](chapter7.md)
-* Recursive functions
-

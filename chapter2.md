@@ -279,6 +279,8 @@ end function
 
 This will not work (to check) because `a` is an argument of a pure function, but the function tries to modify it (the `inout`classification is enough to provoke an error as a pure function cannot modify an input argument). To have something working one needs to change the `intent(inout) :: a` into `intent(in) :: a` as well as delete `a = a + b + c` (or create an intermediate variable `intvar = a + b + c` , and not forgetting to declare it with: `real :: intvar`).
 
+Finally, note that the argument of (or local variable within) a function or subroutine supersedes any variable with the same name that would be in the program (outside of the function).&#x20;
+
 ### `Save` keyword, initialization-declaration
 
 The keyword `save` is used to make a variable global (see next chapter). More specifically, `save` is a specification statement which can be used to ensure that variables used within a procedure (local variable) preserve their values between successive calls to the procedure (often the procedure is in a module).\
